@@ -1,24 +1,25 @@
 //
-//  DevicePickerView.swift
+//  RoomPickerView.swift
 //  SmartHome
 //
-//  Created by Jeff Braun on 22.07.25.
+//  Created by Jeff Braun on 23.07.25.
 //
 
 import SwiftUI
 
-struct DevicePickerView: View {
-    @Binding var selectedDeviceType: DeviceType
-
+struct RoomPickerView: View {
+    
+    @Binding var selectedRoomType: RoomType
+    
     var body: some View {
-        HStack{
-            Image(systemName: selectedDeviceType.iconName)
+        HStack {
+            Image(systemName: selectedRoomType.iconName)
                 .foregroundColor(.blue)
                 .font(.system(size: 20))
                 .frame(width: 24)
-
-            Picker("", selection: $selectedDeviceType) {
-                ForEach(DeviceType.allCases) { type in
+            
+            Picker("", selection: $selectedRoomType) {
+                ForEach(RoomType.allCases) { type in
                     Text(type.rawValue).tag(type)
                 }
             }
@@ -33,7 +34,6 @@ struct DevicePickerView: View {
     }
 }
 
-
 //#Preview {
-//    DevicePickerView()
+//    RoomPickerView()
 //}

@@ -12,7 +12,7 @@ struct RoomPreviewToggle: View {
     
     var body: some View {
         VStack {
-            Toggle("Show Room Preview", isOn: $showRoomPreview)
+            Toggle("Room View", isOn: $showRoomPreview)
         }
         .padding()
         .tint(.blue)

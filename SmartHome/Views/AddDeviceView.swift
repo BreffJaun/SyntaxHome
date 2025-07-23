@@ -8,46 +8,48 @@
 import SwiftUI
 
 struct AddDeviceView: View {
-    @Binding var inputText: String
-    @Binding var showText: String
-    @Binding var selectedType: DeviceType
+    
+    
     @Binding var devices: [SmartDevice]
+    @State var inputText: String = ""
+    @State var selectedDeviceType: DeviceType = .light
+    @State var selectedRoomType : RoomType = .office
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-           HStack(spacing: 12) {
-               TextField("Device name", text: $inputText)
-                   .padding(10)
-                   .overlay(
-                       RoundedRectangle(cornerRadius: 12)
-                           .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                   )
-               DevicePickerView(inputText: $inputText, selectedType: $selectedType)
-           }
+            HStack(spacing: 12) {
+                TextField("Device name", text: $inputText)
+                    .padding(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                    )
+                DevicePickerView(selectedDeviceType: $selectedDeviceType)
+            }
 
-           Button(action: {
-               // MARK: 2.4
-               let name = inputText
-               devices.append(SmartDevice(name: name, type: selectedType))
-//               showText = "\(inputText) (\(selectedType.rawValue))"
-               inputText = ""
-           }) {
-               HStack {
-                   Image(systemName: "plus")
-                   Text("Add Device")
-                       .fontWeight(.semibold)
-               }
-               .frame(maxWidth: .infinity)
-               .padding(.horizontal, 24)
-               .padding(.vertical, 12)
-               .background(Color.blue)
-               .foregroundStyle(.white)
-               .clipShape(RoundedRectangle(cornerRadius: 12))
-           }
-           
-       }
+            HStack(spacing: 12) {
+                Button(action: {
+                    let name = inputText
+                    devices.append(SmartDevice(name: name, deviceType: selectedDeviceType, roomType: selectedRoomType))
+                    inputText = ""
+                }) {
+                    HStack {
+                        Image(systemName: "plus")
+                        Text("Add Device")
+                            .fontWeight(.semibold)
+                    }
+                    .frame(maxWidth: .infinity)
+//                    .padding(10)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 10)
+                    .background(Color.blue)
+                    .foregroundStyle(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+                RoomPickerView(selectedRoomType: $selectedRoomType)
+            }
+        }
         .padding(.horizontal, 8)
-        
     }
 }
 

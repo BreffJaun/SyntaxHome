@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct HeaderView: View {
-    @Binding var inputText: String
-    @Binding var showText: String
-    @Binding var selectedType: DeviceType
     @Binding var devices: [SmartDevice]
 
     var body: some View {
@@ -20,7 +17,7 @@ struct HeaderView: View {
                 .bold()
                 .padding()
 
-            AddDeviceView(inputText: $inputText, showText: $showText, selectedType: $selectedType, devices: $devices)
+            AddDeviceView(devices: $devices)
                 .padding(.vertical)
         }
         .padding(8)

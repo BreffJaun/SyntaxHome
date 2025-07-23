@@ -10,7 +10,8 @@ import Foundation
 struct SmartDevice: Identifiable {
     let id: UUID = UUID()
     var name: String = ""
-    var type: DeviceType
+    var deviceType: DeviceType
+    var roomType: RoomType
     var isOn: Bool = false
     var temp: Double = 20.0
     var isLocked: Bool = true

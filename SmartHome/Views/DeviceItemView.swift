@@ -13,7 +13,8 @@ struct DeviceItemView: View {
     
     var body: some View {
         HStack() {
-            Image(systemName: device.type == .light ? "lightbulb" : device.type == .thermal ? "thermometer" : "lock")
+            Image(systemName: device.deviceType == .light ? "lightbulb" : device.deviceType == .thermal ? "thermometer" : "lock")
+                .padding(.trailing, 10)
                 .foregroundColor(.blue)
                 .font(.system(size: 20))
                 .frame(width: 24)
@@ -21,14 +22,27 @@ struct DeviceItemView: View {
             VStack(alignment: .leading, spacing: 4)  {
                 Text(device.name)
                     .font(.headline)
-                Text(device.type.rawValue)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+//                HStack {
+//                    Text("Device type: ")
+//                        .font(.subheadline)
+//                        .foregroundColor(.secondary)
+//                    Text(device.deviceType.rawValue)
+//                        .font(.subheadline)
+//                        .foregroundColor(.secondary)
+//                }
+                HStack {
+                    Text("Room: ")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    Text(device.roomType.rawValue)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
             }
             
             Spacer()
             
-            switch device.type {
+            switch device.deviceType {
             case .light:
                 Toggle("", isOn: $device.isOn)
                     .labelsHidden()
@@ -43,7 +57,7 @@ struct DeviceItemView: View {
                     Slider(value: $device.temp, in: 10...30, step: 1)
                         .tint(device.temp < 17 ? .blue : device.temp < 25 ? .green : .red)
                 }
-                .frame(width: 200)
+                .frame(width: 150)
 
             case .lock:
                 Button(action: {
@@ -65,7 +79,7 @@ struct DeviceItemView: View {
         .frame(maxWidth: .infinity)
         .frame(height: 75)
         .foregroundStyle(.primary)
-        .background(Color(.secondarySystemBackground))
+        .background(Color(.systemGray6))
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(
             color: colorScheme == .light ? .black.opacity(0.05) : .black.opacity(0.3),

@@ -13,7 +13,6 @@ struct BottomTabView: View {
     
     var body: some View {
         VStack {
-            RoomView(showRoomPreview: $showRoomPreview)
             Divider()
                 .frame(height: 0.5)
                 .background(Color.white)

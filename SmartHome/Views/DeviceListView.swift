@@ -14,7 +14,7 @@ struct DeviceListView: View {
     var body: some View {
         ZStack {
             Color("BackgroundColor")
-                .ignoresSafeArea() // Damit’s bis unter Status Bar und Bottom Edge geht
+                .ignoresSafeArea() // => make the complete background in this color
 
             ScrollView {
                 VStack(spacing: 16) {

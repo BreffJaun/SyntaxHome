@@ -8,7 +8,7 @@
 import Foundation
 
 var smartDevices: [SmartDevice] = [
-    SmartDevice(name: "Living Room Light", type: .light, isOn: true),
-    SmartDevice(name: "Heater", type: .thermal, temp: 22.5),
-    SmartDevice(name: "Front Door", type: .lock, isLocked: true)
+    SmartDevice(name: "Living Room Light", deviceType: .light, roomType: .livingRoom, isOn: true),
+    SmartDevice(name: "Heater", deviceType: .thermal, roomType: .bathroom, temp: 22.5),
+    SmartDevice(name: "Front Door", deviceType: .lock, roomType: .diningRoom, isLocked: true)
 ]
