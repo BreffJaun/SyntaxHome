@@ -15,7 +15,7 @@ struct HeaderView: View {
             Text("Syntax Home")
                 .font(.title)
                 .bold()
-                .padding()
+                .padding(.horizontal, 8)
 
             AddDeviceView(devices: $devices)
                 .padding(.vertical)

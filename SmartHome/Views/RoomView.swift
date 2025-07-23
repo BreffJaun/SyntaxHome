@@ -11,17 +11,6 @@ struct RoomView: View {
        
     @Binding var devices: [SmartDevice]
     
-    private var groupedDevices: [RoomType: [Binding<SmartDevice>]] {
-        Dictionary(
-            grouping: $devices,
-            by: { $0.roomType.wrappedValue }
-        )
-    }
-    
-    private var sortedRoomTypes: [RoomType] {
-        groupedDevices.keys.sorted { $0.rawValue < $1.rawValue }
-    }
-    
     var body: some View {
         ZStack {
             Color("BackgroundColor")
@@ -29,32 +18,44 @@ struct RoomView: View {
 
             ScrollView {
                 VStack(spacing: 24) {
-                    ForEach(sortedRoomTypes, id: \.self) { roomType in
-                        VStack(alignment: .leading, spacing: 12) {
-                            // Raum-Überschrift mit Icon
-                            HStack(spacing: 8) {
-                                Image(systemName: roomType.iconName)
-                                    .foregroundColor(.blue)
-                                Text(roomType.rawValue)
-                                    .font(.title2)
-                                    .fontWeight(.semibold)
-                            }
-                            .padding(.horizontal)
-
-                            // Liste der Devices in diesem Raum
-                            VStack(spacing: 8) {
-                                ForEach(groupedDevices[roomType] ?? [], id: \.wrappedValue.id) { device in
-                                    DeviceItemView(device: device)
-                                    Divider().frame(height: 0.25)
+                    ForEach(RoomType.allCases) { roomType in
+                        let filteredDevices = $devices.filter { $0.roomType.wrappedValue == roomType }
+                        
+                        if !filteredDevices.isEmpty {
+                            VStack(alignment: .leading, spacing: 12) {
+                                // Raumtitel mit Icon
+                                HStack(spacing: 8) {
+                                    Image(systemName: roomType.iconName)
+                                        .foregroundColor(.blue)
+                                    Text(roomType.rawValue)
+                                        .font(.headline)
+                                        .fontWeight(.semibold)
                                 }
+                                .padding(.horizontal)
+                            
+                                LazyVGrid(
+                                    columns: [GridItem(.adaptive(minimum: 175), spacing: 16)],
+                                    spacing: 16
+                                ) {
+                                    ForEach(filteredDevices) { device in
+                                        RoomItemView(device: device)
+                                    }
+                                }
+                                .padding(.horizontal)
+                                
+                                Divider()
+                                    .padding(.horizontal, 16)
+                                    .frame(height: 0.25)
                             }
-                            .background(Color("BackgroundColor"))
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .padding(.horizontal)
                         }
                     }
                 }
                 .padding(.vertical, 20)
+                #if DEBUG
+                .animation(nil, value: devices)
+                #else
+                .animation(.default, value: devices)
+                #endif
             }
         }
     }

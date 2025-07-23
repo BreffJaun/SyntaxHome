@@ -13,11 +13,14 @@ enum DeviceType: String, CaseIterable, Identifiable {
     
     var iconName: String {
         switch self {
-        case .light: return "lightbulb.fill"
+        case .light: return "lightbulb"
         case .thermal: return "thermometer"
-        case .lock: return "lock.fill"
+        case .lock: return "lock"
         }
     }
 }
 
 
+//"thermometer.low"
+//"thermometer.medium"
+//"thermometer.high"
