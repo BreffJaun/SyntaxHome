@@ -13,11 +13,12 @@ struct DeviceItemView: View {
 
     var body: some View {
         HStack {
-            Image(systemName: iconName)
-                .padding(.trailing, 10)
-                .foregroundColor(iconColor)
-                .font(.system(size: 20))
-                .frame(width: 24)
+//            Image(systemName: iconName)
+//                .padding(.trailing, 10)
+//                .foregroundColor(iconColor)
+//                .font(.system(size: 20))
+//                .frame(width: 24)
+            deviceIcon
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(device.name)
@@ -50,8 +51,10 @@ struct DeviceItemView: View {
             radius: 8, x: 0, y: 4
         )
     }
+   
 
-    // MARK: - Icon Name
+
+    // MARK: Icon Name
     private var iconName: String {
         switch device.deviceType {
         case .light:
@@ -69,25 +72,52 @@ struct DeviceItemView: View {
         }
     }
 
-    // MARK: - Icon Color
+    // MARK: Icon Color
     private var iconColor: Color {
         switch device.deviceType {
         case .light:
             return device.isOn ? .yellow : .blue
         case .thermal:
-            if device.temp < 17 {
+            switch device.temp {
+            case ..<14:
                 return .blue
-            } else if device.temp < 25 {
-                return .green
-            } else {
-                return .red
+            case 14..<17:
+                return Color.cyan
+            case 17..<20:
+                return Color.green
+            case 20..<23:
+                return Color.yellow
+            case 23..<26:
+                return Color.orange
+            default:
+                return Color.red
             }
+
         case .lock:
             return device.isLocked ? .red : .green
         }
     }
+    
+    // MARK: Device Icon with symbolEffect
+    @ViewBuilder
+    private var deviceIcon: some View {
+        let icon = Image(systemName: iconName)
+            .padding(.trailing, 10)
+            .foregroundColor(iconColor)
+            .font(.system(size: 20))
+            .frame(width: 24)
 
-    // MARK: - Device Content
+        switch device.deviceType {
+        case .light:
+            icon.symbolEffect(.bounce, value: device.isOn)
+        case .lock:
+            icon.symbolEffect(.bounce, value: device.isLocked)
+        case .thermal:
+            icon.symbolEffect(.pulse, value: device.temp)
+        }
+    }
+
+    // MARK: Device Content
     @ViewBuilder
     private var deviceSpecificContent: some View {
         switch device.deviceType {

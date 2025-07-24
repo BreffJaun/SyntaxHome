@@ -8,7 +8,7 @@ import SwiftUI
 struct SmartHomeView: View {
     
     @State var devices = smartDevices
-    @State var showRoomPreview: Bool = true
+    @State var showRoomPreview: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
