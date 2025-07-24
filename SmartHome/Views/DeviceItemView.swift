@@ -13,11 +13,6 @@ struct DeviceItemView: View {
 
     var body: some View {
         HStack {
-//            Image(systemName: iconName)
-//                .padding(.trailing, 10)
-//                .foregroundColor(iconColor)
-//                .font(.system(size: 20))
-//                .frame(width: 24)
             deviceIcon
 
             VStack(alignment: .leading, spacing: 4) {
