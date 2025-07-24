@@ -10,27 +10,51 @@ import SwiftUI
 struct DeviceListView: View {
     
     @Binding var devices: [SmartDevice]
+    @State private var selectedDevice: SmartDevice?
 
     var body: some View {
         ZStack {
             Color("BackgroundColor")
-                .ignoresSafeArea() // => make the complete background in this color
+                .ignoresSafeArea() // => turns the complete background in this color
 
-            ScrollView {
-                VStack(spacing: 16) {
-                    ForEach($devices) { device in
-                        DeviceItemView(device: device)
-                        Divider()
-                            .frame(height: 0.25)
+            List {
+                ForEach($devices) { device in
+                    DeviceItemView(device: device)
+                        .listRowBackground(Color("BackgroundColor"))
+                        .listRowSeparatorTint(Color.white.opacity(0.15))
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical, 4)
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        Button(role: .destructive) {
+                            if let index = devices.firstIndex(where: { $0.id == device.id }) {
+                                devices.remove(at: index)
+                            }
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+
+                        Button {
+                            selectedDevice = device.wrappedValue
+                        } label: {
+                            Label("Edit", systemImage: "pencil")
+                        }
+                        .tint(.blue)
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.top, 20)
-                .padding(.horizontal)
+            }
+            .listStyle(.plain)
+        }
+        .sheet(item: $selectedDevice) { deviceToEdit in
+            EditDeviceView(device: deviceToEdit) { updatedDevice in
+                if let index = devices.firstIndex(where: { $0.id == updatedDevice.id }) {
+                    devices[index] = updatedDevice
+                }
+                selectedDevice = nil
             }
         }
     }
 }
+
 
 //#Preview {
 //    DeviceListView()

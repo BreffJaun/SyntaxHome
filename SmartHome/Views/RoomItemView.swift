@@ -57,7 +57,7 @@ struct RoomItemView: View {
     private var iconColor: Color {
         switch device.deviceType {
         case .light:
-            return device.isOn ? .yellow : .gray
+            return device.isOn ? .yellow : .blue
         case .thermal:
             if device.temp < 17 {
                 return .blue
