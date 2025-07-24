@@ -13,16 +13,6 @@ struct RoomItemView: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            Image(systemName: iconName)
-                .padding(.vertical, 8)
-                .font(.system(size: 28))
-                .foregroundColor(iconColor)
-
-            Text(device.name)
-                .padding(.bottom, 8)
-                .font(.headline)
-                .multilineTextAlignment(.center)
-
             deviceSpecificContent
         }
         .padding()
@@ -59,13 +49,21 @@ struct RoomItemView: View {
         case .light:
             return device.isOn ? .yellow : .blue
         case .thermal:
-            if device.temp < 17 {
+            switch device.temp {
+            case ..<14:
                 return .blue
-            } else if device.temp < 25 {
-                return .green
-            } else {
-                return .red
+            case 14..<17:
+                return Color.cyan
+            case 17..<20:
+                return Color.green
+            case 20..<23:
+                return Color.yellow
+            case 23..<26:
+                return Color.orange
+            default:
+                return Color.red
             }
+
         case .lock:
             return device.isLocked ? .red : .green
         }
@@ -76,31 +74,76 @@ struct RoomItemView: View {
     private var deviceSpecificContent: some View {
         switch device.deviceType {
         case .light:
-            Toggle("", isOn: $device.isOn)
-                .labelsHidden()
-                .scaleEffect(0.8)
+            VStack(spacing: 8) {
+                Image(systemName: iconName)
+                    .font(.system(size: 28))
+                    .foregroundColor(iconColor)
+                    .symbolEffect(.bounce, value: device.isOn)
+
+                Text(device.name)
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+
+                Toggle("", isOn: $device.isOn)
+                    .labelsHidden()
+                    .scaleEffect(0.8)
+            }
 
         case .thermal:
-            HStack(spacing: 2) {
-                Text("\(Int(device.temp))°")
-                    .padding(.trailing, 8)
-                    .font(.subheadline)
+            VStack(spacing: 8) {
+                HStack(alignment: .center, spacing: 8) {
+                    Gauge(value: device.temp, in: 10...30) {
+                        EmptyView()
+                    } currentValueLabel: {
+                        Text("\(Int(device.temp))°")
+                    }
+                    .gaugeStyle(.accessoryCircular)
+                    .tint(
+                        Gradient(colors: [.blue, .green, .red])
+                    )
+                    .padding(.horizontal, 8)
+                    .frame(maxWidth: .infinity)
+
+                    VStack {
+                        Image(systemName: iconName)
+                            .padding(.bottom, 4)
+                            .font(.system(size: 28))
+                            .foregroundColor(iconColor)
+                            .symbolEffect(.pulse, options: .speed(0.5), value: device.temp)
+
+                        Text(device.name)
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                    }
+                }
+
                 Slider(value: $device.temp, in: 10...30, step: 1)
+                    .frame(maxWidth: .infinity)
                     .tint(iconColor)
-                    .frame(height: 10)
             }
 
         case .lock:
-            Button(action: {
-                device.isLocked.toggle()
-            }) {
-                Text(device.isLocked ? "Locked" : "Unlocked")
-                    .fontWeight(.semibold)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(device.isLocked ? Color.red : Color.green)
-                    .foregroundStyle(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            VStack(spacing: 8) {
+                Image(systemName: iconName)
+                    .font(.system(size: 28))
+                    .foregroundColor(iconColor)
+                    .symbolEffect(.bounce, value: device.isLocked)
+
+                Text(device.name)
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+
+                Button(action: {
+                    device.isLocked.toggle()
+                }) {
+                    Text(device.isLocked ? "Locked" : "Unlocked")
+                        .fontWeight(.semibold)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(device.isLocked ? Color.red : Color.green)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
             }
         }
     }

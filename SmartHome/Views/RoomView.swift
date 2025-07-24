@@ -84,15 +84,6 @@ struct RoomView: View {
                 ]
             )
         }
-//        .sheet(item: $showEditSheet) { deviceToEdit in
-//            EditDeviceView(device: deviceToEdit) { updatedDevice in
-//                if let index = devices.firstIndex(where: { $0.id == updatedDevice.id }) {
-//                    devices[index] = updatedDevice
-//                }
-//                selectedDevice = nil
-//                showEditSheet = false
-//            }
-//        }
         .sheet(isPresented: $showEditSheet) {
             if let deviceToEdit = selectedDevice {
                 EditDeviceView(device: deviceToEdit) { updatedDevice in
