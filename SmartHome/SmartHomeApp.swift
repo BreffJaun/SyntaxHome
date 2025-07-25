@@ -20,6 +20,7 @@ struct SmartHomeApp: App {
     var body: some Scene {
         WindowGroup {
             SmartHomeView()
+                .id(isDarkMode)
                 .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }

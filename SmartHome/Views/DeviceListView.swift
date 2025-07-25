@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DeviceListView: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     @Binding var devices: [SmartDevice]
     @State private var selectedDevice: SmartDevice?
 
@@ -21,7 +21,12 @@ struct DeviceListView: View {
                 ForEach($devices) { device in
                     DeviceItemView(device: device)
                         .listRowBackground(Color("BackgroundColor"))
-                        .listRowSeparatorTint(Color.white.opacity(0.15))
+//                        .listRowSeparatorTint(Color.white.opacity(0.15))
+                        .listRowSeparatorTint(
+                            colorScheme == .dark
+                                ? Color.white.opacity(0.15)
+                                : Color.black.opacity(0.75)
+                        )
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 4)
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {

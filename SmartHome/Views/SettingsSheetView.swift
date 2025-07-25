@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SettingsSheetView: View {
-//    @Environment(\.colorScheme) var colorScheme
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
 
     var body: some View {
@@ -18,7 +17,6 @@ struct SettingsSheetView: View {
                     .tint(.tealCustom)
             }
             .navigationTitle("Settings")
-            .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }
