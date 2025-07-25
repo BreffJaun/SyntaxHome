@@ -65,20 +65,18 @@ struct BottomTabView: View {
                     .tabItem {
                         Label("Home", systemImage: "house.fill")
                     }
-                    .border(.red)
 
                 RoomsView(devices: $devices)
                     .tabItem {
-                        Label("Räume", systemImage: "square.grid.2x2")
+                        Label("Rooms", systemImage: "square.grid.2x2")
                     }
-                    .border(.blue)
 
                 TypesView(devices: $devices)
                     .tabItem {
-                        Label("Typen", systemImage: "lightbulb")
+                        Label("Types", systemImage: "lightbulb")
                     }
-                    .border(.green)
             }
+            .tint(Color(.tealCustom))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

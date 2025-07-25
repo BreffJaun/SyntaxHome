@@ -47,25 +47,25 @@ struct RoomItemView: View {
     private var iconColor: Color {
         switch device.deviceType {
         case .light:
-            return device.isOn ? .yellow : .blue
+            return device.isOn ? .yellowCustom : .blueCustom
         case .thermal:
             switch device.temp {
             case ..<14:
-                return .blue
+                return .blueCustom
             case 14..<17:
-                return Color.cyan
+                return Color.tealLight
             case 17..<20:
-                return Color.green
+                return Color.tealCustom
             case 20..<23:
-                return Color.yellow
+                return Color.yellowCustom
             case 23..<26:
                 return Color.orange
             default:
-                return Color.red
+                return Color.redCustom
             }
 
         case .lock:
-            return device.isLocked ? .red : .green
+            return device.isLocked ? .redCustom : .tealCustom
         }
     }
 
@@ -99,7 +99,7 @@ struct RoomItemView: View {
                     }
                     .gaugeStyle(.accessoryCircular)
                     .tint(
-                        Gradient(colors: [.blue, .green, .red])
+                        Gradient(colors: [.blueCustom, .tealCustom, .redCustom])
                     )
                     .padding(.horizontal, 8)
                     .frame(maxWidth: .infinity)
@@ -140,7 +140,7 @@ struct RoomItemView: View {
                         .fontWeight(.semibold)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(device.isLocked ? Color.red : Color.green)
+                        .background(device.isLocked ? .redCustom : .tealCustom)
                         .foregroundStyle(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }

@@ -28,7 +28,7 @@ struct RoomsView: View {
                             VStack(alignment: .leading, spacing: 12) {
                                 HStack(spacing: 8) {
                                     Image(systemName: roomType.iconName)
-                                        .foregroundColor(.blue)
+                                        .foregroundColor(.blueCustom)
                                     Text(roomType.rawValue)
                                         .font(.headline)
                                         .fontWeight(.semibold)

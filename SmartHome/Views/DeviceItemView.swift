@@ -71,25 +71,25 @@ struct DeviceItemView: View {
     private var iconColor: Color {
         switch device.deviceType {
         case .light:
-            return device.isOn ? .yellow : .blue
+            return device.isOn ? .yellowCustom : .blueCustom
         case .thermal:
             switch device.temp {
             case ..<14:
-                return .blue
+                return .blueCustom
             case 14..<17:
-                return Color.cyan
+                return .tealLight
             case 17..<20:
-                return Color.green
+                return .tealCustom
             case 20..<23:
-                return Color.yellow
+                return .yellowCustom
             case 23..<26:
                 return Color.orange
             default:
-                return Color.red
+                return Color.redCustom
             }
 
         case .lock:
-            return device.isLocked ? .red : .green
+            return device.isLocked ? .redCustom : .tealCustom
         }
     }
     
@@ -140,7 +140,7 @@ struct DeviceItemView: View {
                     .fontWeight(.semibold)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
-                    .background(device.isLocked ? Color.red : Color.green)
+                    .background(device.isLocked ? Color.redCustom : Color.tealCustom)
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }

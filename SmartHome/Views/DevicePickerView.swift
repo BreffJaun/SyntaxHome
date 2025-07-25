@@ -13,7 +13,7 @@ struct DevicePickerView: View {
     var body: some View {
         HStack{
             Image(systemName: selectedDeviceType.iconName)
-                .foregroundColor(.blue)
+                .foregroundColor(.tealCustom)
                 .font(.system(size: 20))
                 .frame(width: 24)
 
@@ -24,6 +24,7 @@ struct DevicePickerView: View {
             }
             .pickerStyle(.menu)
             .padding(-4)
+            .tint(Color.tealCustom)
         }
         .padding(8)
         .background(

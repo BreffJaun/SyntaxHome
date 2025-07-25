@@ -42,7 +42,7 @@ struct AddDeviceView: View {
 //                    .padding(10)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 10)
-                    .background(Color.blue)
+                    .background(Color.tealCustom)
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                 }

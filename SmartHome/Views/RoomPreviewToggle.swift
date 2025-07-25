@@ -15,7 +15,7 @@ struct RoomPreviewToggle: View {
             Toggle("Room View", isOn: $showRoomPreview)
         }
         .padding()
-        .tint(.blue)
+        .tint(.blueCustom)
 //        .border(.red)
     }
 }

@@ -14,7 +14,7 @@ struct RoomPickerView: View {
     var body: some View {
         HStack {
             Image(systemName: selectedRoomType.iconName)
-                .foregroundColor(.blue)
+                .foregroundColor(.tealCustom)
                 .font(.system(size: 20))
                 .frame(width: 24)
             
@@ -25,6 +25,7 @@ struct RoomPickerView: View {
             }
             .pickerStyle(.menu)
             .padding(-4)
+            .tint(.tealCustom)
         }
         .padding(8)
         .background(

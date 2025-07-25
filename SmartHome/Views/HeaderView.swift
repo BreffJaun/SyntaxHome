@@ -23,7 +23,6 @@ struct HeaderView: View {
         .padding(8)
         .frame(height: 200)
         .frame(maxWidth: .infinity, alignment: .topLeading)
-//        .border(.green)
         
         Divider()
             .frame(height: 0.25)

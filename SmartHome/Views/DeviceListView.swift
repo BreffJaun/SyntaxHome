@@ -32,13 +32,14 @@ struct DeviceListView: View {
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }
+                        .tint(.redCustom)
 
                         Button {
                             selectedDevice = device.wrappedValue
                         } label: {
                             Label("Edit", systemImage: "pencil")
                         }
-                        .tint(.blue)
+                        .tint(.blueCustom)
                     }
                 }
             }
