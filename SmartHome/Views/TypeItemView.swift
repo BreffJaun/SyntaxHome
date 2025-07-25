@@ -1,13 +1,13 @@
 //
-//  RoomItemView.swift
-//  SmartHome
+//  TypeItemView.swift
+//  SyntaxHome
 //
-//  Created by Jeff Braun on 23.07.25.
+//  Created by Jeff Braun on 25.07.25.
 //
 
 import SwiftUI
 
-struct RoomItemView: View {
+struct TypeItemView: View {
     @Environment(\.colorScheme) var colorScheme
     @Binding var device: SmartDevice
 
@@ -87,6 +87,10 @@ struct RoomItemView: View {
                 Text(device.name)
                     .font(.headline)
                     .multilineTextAlignment(.center)
+                
+                Text("Room: \(device.roomType.rawValue)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
 
         case .thermal:
@@ -104,13 +108,13 @@ struct RoomItemView: View {
                     .padding(.horizontal, 8)
                     .frame(maxWidth: .infinity)
 
-
                     Image(systemName: iconName)
                         .padding(.bottom, 4)
-                        .frame(maxWidth: .infinity)
                         .font(.system(size: 28))
                         .foregroundColor(iconColor)
                         .symbolEffect(.pulse, options: .speed(0.5), value: device.temp)
+                        .frame(maxWidth: .infinity)
+                    
                 }
 
                 Slider(value: $device.temp, in: 10...30, step: 1)
@@ -120,6 +124,10 @@ struct RoomItemView: View {
                 Text(device.name)
                     .font(.headline)
                     .multilineTextAlignment(.center)
+                
+                Text("Room: \(device.roomType.rawValue)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
 
         case .lock:
@@ -144,11 +152,15 @@ struct RoomItemView: View {
                 Text(device.name)
                     .font(.headline)
                     .multilineTextAlignment(.center)
+                
+                Text("Room: \(device.roomType.rawValue)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
         }
     }
 }
 
 //#Preview {
-//    RoomItemView()
+//    TypeItemView()
 //}

@@ -15,7 +15,6 @@ struct SmartHomeView: View {
             BottomTabView(devices: $devices)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-//        .frame(maxHeight: .infinity, alignment: .top)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(Color(.systemGray6))
     }

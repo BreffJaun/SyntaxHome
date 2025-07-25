@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AddDeviceView: View {
     
-    
     @Binding var devices: [SmartDevice]
     @State var inputText: String = ""
     @State var selectedDeviceType: DeviceType = .light

@@ -20,7 +20,3 @@ enum DeviceType: String, CaseIterable, Identifiable {
     }
 }
 
-
-//"thermometer.low"
-//"thermometer.medium"
-//"thermometer.high"
