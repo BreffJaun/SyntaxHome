@@ -26,7 +26,7 @@ struct HeaderView: View {
 //        .border(.green)
         
         Divider()
-            .frame(height: 0.5)
+            .frame(height: 0.25)
             .background(Color.white)
             .shadow(color: Color.black.opacity(0.15), radius: 4, x: 0, y: 2)
     }

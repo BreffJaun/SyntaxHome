@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RoomView: View {
+struct RoomsView: View {
        
     @Binding var devices: [SmartDevice]
     @State private var selectedDevice: SmartDevice?
@@ -99,7 +99,7 @@ struct RoomView: View {
 }
 
 //#Preview {
-//    RoomView()
+//    Roomsiew()
 //}
 
 // => Vorteil LazyGrid:

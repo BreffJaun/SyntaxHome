@@ -8,19 +8,15 @@ import SwiftUI
 struct SmartHomeView: View {
     
     @State var devices = smartDevices
-    @State var showRoomPreview: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HeaderView(devices: $devices)
-            if showRoomPreview {
-                RoomView(devices: $devices)
-            } else {
-                DeviceListView(devices: $devices)
-            }
-            BottomTabView(showRoomPreview: $showRoomPreview)
+            BottomTabView(devices: $devices)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(maxHeight: .infinity, alignment: .top)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(Color(.systemGray6))
     }
 }
@@ -28,3 +24,4 @@ struct SmartHomeView: View {
 #Preview {
     SmartHomeView()
 }
+
