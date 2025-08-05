@@ -26,7 +26,9 @@ This SwiftUI app simulates a simple smart home control system. It allows users t
 
 ## How to Run
 
-1. Open the `.xcodeproj` or `.xcodeworkspace` file in Xcode.  
-2. Build and run the app using the iOS Simulator or a real device.  
-3. Interact with the smart home UI to test light, temperature, and door controls.
+1. Click the green **"Code"** button on this repository and select **"Open with Xcode"** (if available), or download the ZIP and open the project manually.
+2. Alternatively, open the `.xcodeproj` or `.xcodeworkspace` file directly in **Xcode**.
+3. Click the **Run** ▶️ button in the top toolbar to build and launch the app in the iOS Simulator or on a physical device.
+4. Interact with the smart home UI to test light, temperature, and door controls.
+
 
