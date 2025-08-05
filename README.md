@@ -1,6 +1,7 @@
 # Smart Home Control App -> SyntaxHome
 
-![App Screenshot](./SmartHome/Images/screenshot.png)
+<img src=SmartHome/Images/screenshot.png width=75%>
+
 
 This SwiftUI app simulates a simple smart home control system. It allows users to:
 
