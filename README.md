@@ -31,4 +31,8 @@ This SwiftUI app simulates a simple smart home control system. It allows users t
 3. Click the **Run** ▶️ button in the top toolbar to build and launch the app in the iOS Simulator or on a physical device.
 4. Interact with the smart home UI to test light, temperature, and door controls.
 
+---
 
+📝 Disclaimer
+This project was developed as part of my training. The source code, structure and documentation are my own work.
+© 2025 Jeff Braun. All rights reserved. Licensed under the [MIT License](./LICENSE).
