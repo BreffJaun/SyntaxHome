@@ -34,5 +34,7 @@ This SwiftUI app simulates a simple smart home control system. It allows users t
 ---
 
 📝 Disclaimer
+
 This project was developed as part of my training. The source code, structure and documentation are my own work.
+
 © 2025 Jeff Braun. All rights reserved. Licensed under the [MIT License](./LICENSE).
