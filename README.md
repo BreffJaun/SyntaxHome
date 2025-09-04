@@ -1,5 +1,11 @@
 # Smart Home Control App -> SyntaxHome
 
+![Swift](https://img.shields.io/badge/Swift-5-orange?logo=swift&logoColor=white)
+![Xcode](https://img.shields.io/badge/Xcode-16.4-blue?logo=xcode&logoColor=white)
+![iOS](https://img.shields.io/badge/iOS-18.0-black?logo=apple&logoColor=white)
+![SwiftUI](https://img.shields.io/badge/SwiftUI-Yes-brightgreen?logo=swift&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+
 <img src=SmartHome/Images/screenshot.png width=75%>
 
 
